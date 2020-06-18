@@ -30,7 +30,7 @@ chrome.webRequest.onBeforeSendHeaders.addListener(details => {
 //   // extraInfoSpec
 //   ['blocking', 'responseHeaders', 'extraHeaders']);
 
-removeHeader = (headers, name) => {
+const removeHeader = (headers, name) => {
   for (var i = 0; i < headers.length; i++) {
     if (headers[i].name.toLowerCase() == name) {
       console.log('Removing "' + name + '" header.');
