@@ -1,19 +1,38 @@
-console.log("Enhanced Medium viewer initialized");
-const targetDomains = new Set(["medium.com"]);
+// Copyright 2018 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
 
-let currentUrl = window.location.toString();
+'use strict';
 
-for (targetUrl of targetDomains) {
-  if (currentUrl.includes(targetUrl)) {
-      console.log("Detected that the browser is surfing a cookie deletion target website");
-      deleteCookies(currentUrl);
-      break;
+// Simple extension to remove 'Cookie' request header and 'Set-Cookie' response
+// header.
+
+chrome.webRequest.onBeforeSendHeaders.addListener(
+  function(details) {
+    removeHeader(details.requestHeaders, 'cookie');
+    return {requestHeaders: details.requestHeaders};
+  },
+  // filters
+  {urls: ['*://medium.com/*', '*://towardsdatascience.com/*', '*://*.towardsdatascience.com/*']},
+  // extraInfoSpec
+  ['blocking', 'requestHeaders', 'extraHeaders']);
+
+// chrome.webRequest.onHeadersReceived.addListener(
+//   function(details) {
+//     removeHeader(details.responseHeaders, 'set-cookie');
+//     return {responseHeaders: details.responseHeaders};
+//   },
+//   // filters
+//   {urls: ['https://*/*', 'http://*/*']},
+//   // extraInfoSpec
+//   ['blocking', 'responseHeaders', 'extraHeaders']);
+
+  function removeHeader(headers, name) {
+    for (var i = 0; i < headers.length; i++) {
+      if (headers[i].name.toLowerCase() == name) {
+        console.log('Removing "' + name + '" header.');
+        headers.splice(i, 1);
+        break;
+      }
+    }
   }
-}
-
-function removeCookiesForDomain(domain) {
-  cache.getCookies(domain).forEach(function(cookie) {
-    removeCookie(cookie);
-  });
-}
-
