@@ -1,0 +1,14 @@
+{
+    "name": "Enhanced Medium Viewer",
+    "version": "1.0",
+    "description": "Read articles on medium.com without interruptions",
+    "permissions": [
+        "tabs",
+        "cookies"
+    ],
+    "background": {
+      "scripts": ["enhanced_medium_viewer.js"],
+      "persistent": false
+    },
+    "manifest_version": 2
+  }
