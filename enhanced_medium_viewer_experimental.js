@@ -16,3 +16,4 @@ function removeCookiesForDomain(domain) {
     removeCookie(cookie);
   });
 }
+
