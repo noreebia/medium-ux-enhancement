@@ -9,10 +9,7 @@ Chrome extension to view medium.com (and similar websites) without any interrupt
     1. Click 'Load unpacked', then navigate to folder of this repo you have just downloaded, then click 'select'
 1. Enjoy uninterrupted browsing of medium.com. Other websites that this extension works on are listed below
     * towardsdatascience.com
-<<<<<<< HEAD
     * gitconnected.com
-=======
     
 # How it Works
-It simply removes the cookies from the browser's outgoing HTTP request (as that is how Medium keeps track of whether to let you view an article or show a paywall instead).
->>>>>>> 60e4ef98eecfe3d77a8e2641db91562d8fe0586e
+It simply removes the cookies from the browser's outgoing HTTP request (as that is how the above mentioned websites decide to let you view an article or show a paywall instead).
