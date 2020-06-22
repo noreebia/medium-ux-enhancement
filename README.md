@@ -9,3 +9,4 @@ Chrome extension to view medium.com (and similar websites) without any interrupt
     1. Click 'Load unpacked', then navigate to folder of this repo you have just downloaded, then click 'select'
 1. Enjoy uninterrupted browsing of medium.com. Other websites that this extension works on are listed below
     * towardsdatascience.com
+    * gitconnected.com

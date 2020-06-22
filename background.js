@@ -4,31 +4,25 @@
 
 // Simple extension to remove 'Cookie' request header and 'Set-Cookie' response header.
 
+const targetUrls = [
+  "*://medium.com/*",
+  "*://towardsdatascience.com/*",
+  "*://*.towardsdatascience.com/*",
+  "*://gitconnected.com/*",
+  "*://*.gitconnected.com/*"
+]
+
 chrome.webRequest.onBeforeSendHeaders.addListener(details => {
     removeHeader(details.requestHeaders, "cookie");
     return { requestHeaders: details.requestHeaders };
   },
   // filters
   {
-    urls: [
-      "*://medium.com/*",
-      "*://towardsdatascience.com/*",
-      "*://*.towardsdatascience.com/*",
-    ],
+    urls: Array.from(targetUrls),
   },
   // extraInfoSpec
   ["blocking", "requestHeaders", "extraHeaders"]
 );
-
-// chrome.webRequest.onHeadersReceived.addListener(
-//   function(details) {
-//     removeHeader(details.responseHeaders, 'set-cookie');
-//     return {responseHeaders: details.responseHeaders};
-//   },
-//   // filters
-//   {urls: ['https://*/*', 'http://*/*']},
-//   // extraInfoSpec
-//   ['blocking', 'responseHeaders', 'extraHeaders']);
 
 const removeHeader = (headers, name) => {
   for (var i = 0; i < headers.length; i++) {

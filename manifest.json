@@ -9,7 +9,9 @@
     "webRequestBlocking",
     "*://medium.com/*",
     "*://towardsdatascience.com/*",
-    "*://*.towardsdatascience.com/*"
+    "*://*.towardsdatascience.com/*",
+    "*://gitconnected.com/*",
+    "*://*.gitconnected.com/*"
   ],
   "background": {
     "scripts": ["background.js"],
